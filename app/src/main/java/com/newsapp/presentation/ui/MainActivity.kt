@@ -9,9 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
 import com.newsapp.presentation.viewmodel.BiometricViewModel
 import com.newsapp.util.BiometricAuthListener
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), BiometricAuthListener {
-    private val mainViewModel: BiometricViewModel by viewModels()
+    val mainViewModel: BiometricViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +38,7 @@ class MainActivity : AppCompatActivity(), BiometricAuthListener {
     override fun onAuthFailed() {
     }
 
-    private fun showWarningDialog() {
+    fun showWarningDialog() {
         AlertDialog.Builder(this)
             .setTitle("Authentication Required")
             .setMessage("You must authenticate yourself to continue using the app. If you do not, you will be thrown out of the app.")

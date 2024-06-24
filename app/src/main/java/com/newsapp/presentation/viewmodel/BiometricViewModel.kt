@@ -1,7 +1,6 @@
 package com.newsapp.presentation.viewmodel
 
 import android.app.Application
-import android.content.Context
 import android.util.Log
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
@@ -9,10 +8,13 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.AndroidViewModel
 import com.newsapp.util.BiometricAuthListener
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import javax.inject.Inject
 
-class BiometricViewModel(application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class BiometricViewModel @Inject constructor(application: Application) : AndroidViewModel(application) {
 
     private val _canAuthenticateWithBiometrics = MutableStateFlow(false)
     val canAuthenticateWithBiometrics: StateFlow<Boolean> = _canAuthenticateWithBiometrics
